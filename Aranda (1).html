@@ -1,0 +1,392 @@
+
+            <!DOCTYPE html>
+            <html lang="en">
+            <head>
+                <meta charset="UTF-8">
+                <title>Suburb Insight Report – Aranda</title>
+                <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700;900&amp;display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+                <style>
+                    
+        :root {
+            --font-family: 'Lato', 'Segoe UI', Roboto, sans-serif;
+            --primary-color: #0D2A4C;
+            --secondary-color: #3A7CA5;
+            --background-color: #F7F9FA;
+            --card-background: #FFFFFF;
+            --text-color: #333333;
+            --border-color: #EAEFF4;
+            --shadow-color: rgba(13, 42, 76, 0.1);
+        }
+
+        body {
+            font-family: var(--font-family);
+            background: var(--background-color);
+            color: var(--text-color);
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            font-size: 15px;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        .page {
+            background: var(--card-background);
+            width: 210mm;
+            min-height: 297mm;
+            margin: 20px;
+            padding: 12mm;
+            box-sizing: border-box;
+            box-shadow: 0 5px 25px rgba(0, 0, 0, 0.1);
+        }
+
+        .report-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            border-bottom: 2px solid var(--primary-color);
+            padding-bottom: 20px;
+            margin-bottom: 30px;
+        }
+
+        .report-header .logo {
+            font-weight: 900;
+            font-size: 24px;
+            color: var(--primary-color);
+        }
+
+        .report-header .title-block h1 {
+            font-size: 36px;
+            font-weight: 900;
+            color: var(--primary-color);
+            margin: 0 0 5px 0;
+            text-align: right;
+        }
+
+        .report-header .title-block p {
+            font-size: 16px;
+            color: var(--secondary-color);
+            margin: 0;
+            text-align: right;
+        }
+
+        footer {
+            text-align: center;
+            margin-top: 40px;
+            padding-top: 20px;
+            border-top: 1px solid var(--border-color);
+            font-size: 12px;
+            color: #999;
+        }
+
+        .section {
+            background: var(--card-background);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 15px;
+            box-shadow: 0 4px 15px var(--shadow-color);
+            margin-bottom: 25px;
+        }
+
+        .section-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 15px;
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 12px;
+        }
+
+        .section-header i {
+            font-size: 20px;
+            color: var(--secondary-color);
+            margin-right: 15px;
+            width: 25px;
+        }
+
+        .section-header h2 {
+            font-size: 18px;
+            font-weight: 700;
+            color: var(--primary-color);
+            margin: 0;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        td {
+            padding: 8px 5px;
+            vertical-align: top;
+            font-size: 14px;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        tr:last-child td {
+            border-bottom: none;
+        }
+
+        td:nth-child(1) {
+            font-weight: 700;
+            color: #555;
+            width: 50%;
+        }
+
+        td:nth-child(2) {
+            width: 20%;
+        }
+
+        td:nth-child(3) {
+            width: 20%;
+            text-align: right;
+            font-size: 0.95em;
+        }
+
+        .rating {
+            font-size: 20px;
+            letter-spacing: 2px;
+        }
+
+        .rating .filled {
+            color: #FFC107;
+        }
+
+        .rating .empty {
+            color: #DDE4E9;
+        }
+
+        #housing-type-mix, #dwelling-ownership, #top-occupations, #languages-spoken, #median-age, #median-income {
+            font-weight: normal;
+            display: inline-block;
+            margin-top: 4px; /* or 6px for more space */
+        }
+
+        .age-diff {
+            font-weight: 500;
+            font-size: 0.95em;
+            padding-left: 6px;
+            white-space: nowrap;
+        }
+
+        .age-diff.up {
+            color: #c62828;
+        }
+
+        .age-diff.down {
+            color: #2e7d32;
+        }
+
+        .age-diff.neutral {
+            color: #1565c0;
+        }
+
+
+        #secondary-line {
+        font-weight: normal !important;
+        color: #666;
+        display: block;
+        }
+
+        .four-column-table td,
+.four-column-table th {
+    padding: 8px 5px;
+    vertical-align: top;
+    font-size: 14px;
+    border-bottom: 1px solid var(--border-color);
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+}
+
+.four-column-table {
+    width: 100%;
+    table-layout: fixed;
+}
+
+.four-column-table tr:last-child td {
+    border-bottom: none;
+}
+
+.four-column-table td:nth-child(1),
+.four-column-table th:nth-child(1) {
+    font-weight: 700;
+    color: #555;
+    text-align: left;
+}
+
+.four-column-table td:nth-child(n+2),
+.four-column-table th:nth-child(n+2) {
+    text-align: right;
+    font-size: 0.95em;
+}
+
+.four-column-table td:nth-child(2),
+.four-column-table td:nth-child(3),
+.four-column-table th:nth-child(2),
+.four-column-table th:nth-child(3) {
+    text-align: center;
+}
+
+.page {
+    width: 210mm;       /* A4 width */
+    min-height: 297mm;  /* A4 height */
+    margin: 0 auto;     /* horizontally center in viewport */
+    background: white;  /* white bg to avoid dark edges */
+    box-sizing: border-box;
+    overflow: hidden;
+}
+
+
+
+
+        @media print {
+            body {
+                background: #FFF;
+            }
+            .page {
+                width: 100%;
+                min-height: auto;
+                margin: 0;
+                padding: 15mm 20mm;
+                box-shadow: none;
+                transform: translateX(-1.5px); /* nudge left slightly */
+            }
+            .section {
+                box-shadow: none;
+                border: 1px solid #ccc;
+                min-height: auto;
+            }
+        }
+    
+                </style>
+            </head>
+            <body>
+                <div class="page">
+    <header class="report-header">
+        <input type="file" id="upload" accept=".xlsx, .xls">
+        <div class="logo">YourLogo</div>
+        <div class="title-block">
+            <h1>Suburb Insight Report</h1>
+            <p id="suburb-name">Aranda</p>
+        </div>
+    </header>
+
+    <main>
+        <!-- Suburb Snapshot -->
+        <div class="section">
+            <div class="section-header">
+                <i class="fa-solid fa-chart-pie"></i>
+                <h2>Suburb Snapshot</h2>
+            </div>
+            <table>
+                <tbody><tr><td>Population</td><td id="population">2605</td><td id="population-diff"><span class="age-diff down">▼&nbsp; 22 % below region avg</span></td></tr>
+                <tr><td>Median age</td><td id="median-age">42</td><td id="median-age-diff"><span class="age-diff up">▲ 7 yrs above region avg</span></td></tr>
+                <tr><td>Families with children</td><td id="families-with-children">61%</td><td id="families-children-diff"><span class="age-diff up">▲&nbsp; 20 % above region avg</span></td></tr>
+                <tr><td>Residents born overseas</td><td id="born-overseas">26%</td><td id="born-overseas-diff"><span class="age-diff up">▲&nbsp; 5 % above region avg</span></td></tr>
+                <tr><td>Median weekly household income (2025 estimate)</td><td id="median-income-2025">$3,578</td><td id="income-diff"><span class="age-diff up">▲&nbsp; 39 % above region avg</span></td></tr>
+                <tr><td colspan="3" style="font-weight: normal;">The median household income is greater than <span id="median-income">90% of suburbs in this region.</span></td></tr>
+            </tbody></table>
+        </div>
+
+        <!-- Housing & Rent -->
+        <div class="section">
+            <div class="section-header">
+                <i class="fa-solid fa-house-chimney"></i>
+                <h2>Housing &amp; Rent</h2>
+            </div>
+            <table>
+                <tbody><tr><td>Percentage of renters</td><td id="renters-percent">16%</td><td id="renter-comparison"><span class="age-diff down">▼&nbsp; 37 % below region avg</span></td></tr>
+                <tr><td>Median weekly rent</td><td id="median-rent">91</td><td id="median-rent-comparison"><span class="age-diff up">▲&nbsp; 40 % above region avg</span></td></tr>
+                <tr><td>1-2 bedroom dwellings</td><td id="one-two-bed">64</td><td id="one-two-bed-comparison"><span class="age-diff down">▼&nbsp; 80 % below region avg</span></td></tr>
+                <tr><td>3+ bedroom dwellings</td><td id="three-bed-plus">833</td><td id="three-bed-comparison"><span class="age-diff down">▼&nbsp; 8 % below region avg</span></td></tr>
+                <tr><td colspan="2">Housing type mix: <span id="housing-type-mix">87% are houses, 12% are apartments or townhouses</span></td></tr>
+                <tr><td colspan="3">Dwelling ownership: <span id="dwelling-ownership">43% of homes are fully owned, 38% are owned with a mortgage</span></td></tr>
+            </tbody></table>
+        </div>
+
+        <!-- Resident Profile -->
+        <div class="section">
+            <div class="section-header">
+                <i class="fa-solid fa-users"></i>
+                <h2>Resident Profile</h2>
+            </div>
+            <table>
+                <tbody><tr><td>Work from home rate</td><td id="wfh-rate">14%</td><td id="wfh-comparison"><span class="age-diff up">▲&nbsp; 63 % above region avg</span></td></tr>
+                <tr><td>University educated (Bachelor's degree minimum)</td><td id="uni-educated">56%</td><td id="uni-comparison"><span class="age-diff up">▲&nbsp; 56 % above region avg</span></td></tr>
+                <tr><td colspan="3">Top Occupations:<br><span id="top-occupations">Public Administration &amp; Safety, Education &amp; Training, Professional, Scientific &amp; Technical Services</span></td></tr>
+                <tr><td colspan="2">Languages spoken other than English: <span id="languages-spoken">Mandarin, German, Cantonese</span></td></tr>
+            </tbody></table>
+        </div>
+
+        <!-- Amenities & Services -->
+        <div class="section amenities-section">
+                <table class="four-column-table">
+                <colgroup>
+                    <col style="width: 45%;">
+                    <col style="width: 15%;">
+                    <col style="width: 15%;">
+                    <col style="width: 25%;">
+                </colgroup>
+                <thead>
+                    <tr>
+                        <th style="padding-left: 0; padding-bottom: 12px;">
+                            <i class="fa-solid fa-store" style="font-size: 20px; color: var(--secondary-color); margin-right: 15px;"></i>
+                            <span style="font-size: 18px; font-weight: 700; color: var(--primary-color);">Amenities &amp; Services</span>
+                        </th>
+                        <th>In Suburb</th>
+                        <th>Within 2km</th>
+                        <th>Local Average (+2km*)</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    <tr><td>Cafés, restaurants, bars and bakeries</td><td id="cafes-restaurants">1</td><td id="cafes-2km">39</td><td id="cafes-comparison"><span class="age-diff down">▼&nbsp; 2  below region avg</span></td></tr>
+                    <tr><td>Supermarkets - small and large</td><td id="supermarkets">0</td><td id="supermarkets-2km">10</td><td id="supermarkets-comparison"><span class="age-diff up">▲&nbsp; 1  above region avg</span></td></tr>
+                    <tr><td>Medical, including GP clinics and specialists</td><td id="gp-clinics">3</td><td id="gp-2km">25</td><td id="gp-comparison"><span class="age-diff up">▲&nbsp; 14  above region avg</span></td></tr>
+                    <tr><td>Childcare, daycare, early learning centres</td><td id="childcare">1</td><td id="childcare-2km">12</td><td id="childcare-comparison"><span class="age-diff up">▲&nbsp; 5  above region avg</span></td></tr>
+                    <tr><td>Schools nearby - primary and high school</td><td id="schools-nearby">2</td><td id="schools-2km">5</td><td id="schools-comparison"><span class="age-diff neutral">●&nbsp; At region avg</span></td></tr>
+                    <tr><td>Parks, playgrounds and green space</td><td id="parks-green-space">4</td><td id="parks-2km">16</td><td id="parks-comparison"><span class="age-diff down">▼&nbsp; 2  below region avg</span></td></tr>
+                    <tr><td colspan="4" style="font-weight: normal; text-align: right;">* Amenities and services in suburbs within 2km of listed suburb</td></tr>
+                </tbody>
+            </table>
+        </div>
+
+
+
+        <!-- Transport & Access -->
+        <div class="section">
+            <div class="section-header">
+                <i class="fa-solid fa-bus"></i>
+                <h2>Transport &amp; Access</h2>
+            </div>
+            <table>
+                <tbody><tr><td>Commute to work in a a car</td><td id="car-dependency">80%</td><td id="car-comparison"><span class="age-diff up">▲&nbsp; 10 % above region avg</span></td></tr>
+                <tr><td>CBD commute by car - total time</td><td id="commute-car">11 mins</td><td id="commute-car-comparison"><span class="age-diff down">▼&nbsp; 4 mins below region avg</span></td></tr>
+                <tr><td>CBD commute by public transport - total time</td><td id="commute-pt">22 mins</td><td id="commute-pt-comparison"><span class="age-diff down">▼&nbsp; 16 mins below region avg</span></td></tr>
+            </tbody></table>
+        </div>
+
+        <!-- Lifestyle Fit -->
+        <div class="section">
+            <div class="section-header">
+                <i class="fa-solid fa-star"></i>
+                <h2>Lifestyle Fit</h2>
+            </div>
+            <table>
+                <tbody><tr><td>WFH Suitability<div id="secondary-line">Work from home data, job type, dwelling suitability and commute difficulty</div></td><td style="text-align: center;"><div class="rating" id="rating-wfh"><span class="filled">★★★★</span><span class="empty">☆</span></div></td></tr>
+                <tr><td>Family Friendliness<div id="secondary-line">Suburb mix of families, younger children and access to community services</div></td><td style="text-align: center;"><div class="rating" id="rating-family"><span class="filled">★★★</span><span class="empty">☆☆</span></div></td></tr>
+                <tr><td>Nightlife / Social<div id="secondary-line">Access to local restaurants, bars and cafes</div></td><td style="text-align: center;"><div class="rating" id="rating-nightlife"><span class="filled">★★★</span><span class="empty">☆☆</span></div></td></tr>
+                <tr><td>Public Transport<div id="secondary-line">Public transport popularity within suburb, ease of commute</div></td><td style="text-align: center;"><div class="rating" id="rating-transport"><span class="filled">★★★★</span><span class="empty">☆</span></div></td></tr>
+                <tr><td>Cultural Diversity<div id="secondary-line">Cultural diversity throughout the suburb</div></td><td style="text-align: center;"><div class="rating" id="rating-diversity"><span class="filled">★★★</span><span class="empty">☆☆</span></div></td></tr>
+            </tbody></table>
+        </div>
+    </main>
+
+    <footer>
+        Report generated on July 4, 2025. Data sourced from ABS, Domain.com.au, and local council records.<br>
+        © 2025 Your Company Name. All Rights Reserved.
+    </footer>
+</div>
+            </body>
+            </html>
+        
